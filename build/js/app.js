@@ -3,13 +3,11 @@ var User = function(letter){
   this.letter = letter;
 };
 
-User.prototype.getWord = function() {
-  var word = "default";
+User.prototype.getWord = function(displayWord) {
   $.get('http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=1&words=1').then(function(response) {
-    word = "success";
+    displayWord(response);
     // response;
   });
-  return word;
 };
 
 exports.userModule = User;
@@ -17,12 +15,14 @@ exports.userModule = User;
 },{}],2:[function(require,module,exports){
 var User = require('./../js/dino.js').userModule;
 
-
+var displayWord = function(thisWord) {
+  $(".word").text(thisWord);
+};
 
 $(document).ready(function() {
   var currentUser = new User("k");
   console.log(currentUser.getWord());
-  $('.word').text(currentUser.getWord());
+  currentUser.getWord(displayWord);
 });
 
 },{"./../js/dino.js":1}]},{},[2]);

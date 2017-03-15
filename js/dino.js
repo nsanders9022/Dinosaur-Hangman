@@ -2,13 +2,11 @@ var User = function(letter){
   this.letter = letter;
 };
 
-User.prototype.getWord = function() {
-  var word = "default";
+User.prototype.getWord = function(displayWord) {
   $.get('http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=1&words=1').then(function(response) {
-    word = "success";
+    displayWord(response);
     // response;
   });
-  return word;
 };
 
 exports.userModule = User;
