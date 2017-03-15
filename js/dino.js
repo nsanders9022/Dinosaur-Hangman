@@ -3,10 +3,12 @@ var User = function(letter){
 };
 
 User.prototype.getWord = function() {
-  $.get('http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=1&words=1');
-}).fail(function(error) {
-    $('.word').text(error.responseJSON.message);
+  var word = "default";
+  $.get('http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=1&words=1').then(function(response) {
+    word = "success";
+    // response;
   });
+  return word;
 };
 
 exports.userModule = User;
