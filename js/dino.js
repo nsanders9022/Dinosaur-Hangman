@@ -1,21 +1,24 @@
-var User = function(letter){
-  this.letter = letter;
+var User = function(){
+  this.correctList = [];
+  this.wrongList = [];
 };
-
-var correctList = [];
 
 User.prototype.getWord = function(displayWord) {
   $.get('http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=1&words=1').then(function(response) {
     displayWord(response);
-    // response;
+    var final = response[0];
+    console.log(final.toString());
+    return final.toString();
   });
 };
 
 User.prototype.checkLetter = function(letter, word) {
   if (word.includes(letter)) {
-    guessList.push(letter);
+    this.correctList.push(letter);
   }
-  return guessList.join(" ")
-}
+  else {
+    this.wrongList.push(letter);
+  }
+};
 
 exports.userModule = User;
