@@ -13,4 +13,11 @@ User.prototype.checkLetter = function(letter, word) {
   }
 };
 
+User.prototype.displayLines = function (word, displayFunction) {
+  for (var i = 0; i < word.length; i++) {
+    displayFunction();
+  }
+};
+
+
 exports.userModule = User;

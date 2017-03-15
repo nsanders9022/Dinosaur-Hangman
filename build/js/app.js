@@ -14,6 +14,13 @@ User.prototype.checkLetter = function(letter, word) {
   }
 };
 
+User.prototype.displayLines = function (word, displayFunction) {
+  for (var i = 0; i < word.length; i++) {
+    displayFunction();
+  }
+};
+
+
 exports.userModule = User;
 
 },{}],2:[function(require,module,exports){
@@ -23,11 +30,14 @@ var displayWord = function(thisWord) {
   $(".word").text(thisWord);
 };
 
+var makeLines = function() {
+  $(".lines").append("<div class='line'></div>");
+}
+
 var word;
 $(document).ready(function() {
 
   var currentUser = new User();
-  // console.log("word " + word);
   $(".button").click(function(){
     var letter = $("#user-input").val();
     console.log(letter);
@@ -41,6 +51,7 @@ $(document).ready(function() {
     displayWord(response);
     word = response[0].toString();
     console.log(word);
+    currentUser.displayLines(word, makeLines);
   });
 
 });
