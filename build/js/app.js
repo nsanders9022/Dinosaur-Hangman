@@ -14,9 +14,10 @@ User.prototype.checkLetter = function(letter, word) {
   }
 };
 
+
 User.prototype.displayLines = function (word, displayFunction) {
   for (var i = 0; i < word.length; i++) {
-    displayFunction();
+    displayFunction(i);
   }
 };
 
@@ -30,9 +31,13 @@ var displayWord = function(thisWord) {
   $(".word").text(thisWord);
 };
 
-var makeLines = function() {
-  $(".lines").append("<div class='line'></div>");
+var makeLines = function(i) {
+  $(".lines").append("<div class='line' data-val='" + i + "'></div>");
 }
+
+// var displayLetter = function(letter, i) {
+//   $("data-val='" + i + "'").append(letter);
+// };
 
 var word;
 $(document).ready(function() {
@@ -42,9 +47,13 @@ $(document).ready(function() {
     var letter = $("#user-input").val();
     console.log(letter);
     currentUser.checkLetter(letter, word);
-    currentUser.correctList.forEach(function(correctLetter){
-      $(".correctList").append(correctLetter);
-    });
+    for (var i = 0; i < currentUser.correctList.length; i++) {
+      $('div.line[data-val=' + i + ']').text(currentUser.correctList[i]);
+    }
+
+    // currentUser.correctList.forEach(function(correctLetter){
+    //   $(".correctList").text(correctLetter);
+    // });
   });
 
   $.get('http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=1&words=1').then(function(response) {
