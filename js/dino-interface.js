@@ -29,11 +29,7 @@ $(document).ready(function() {
     // });
   });
 
-  $.get('http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=1&words=1').then(function(response) {
-    displayWord(response);
-    word = response[0].toString();
-    console.log(word);
-    currentUser.displayLines(word, makeLines);
-  });
+  
+  currentUser.displayLines(word, makeLines);
 
 });
