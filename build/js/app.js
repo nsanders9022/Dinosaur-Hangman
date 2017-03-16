@@ -3,64 +3,87 @@ var User = function(){
   this.correctList = [];
   this.wrongList = [];
 };
+var wordArray;
+var word;
 
-
-User.prototype.checkLetter = function(letter, word) {
-  if (word.includes(letter)) {
-    this.correctList.push(letter);
-  }
-  else {
-    this.wrongList.push(letter);
-  }
+User.prototype.getWord = function(displayWord) {
+  $.get('http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=1&words=1').then(function(response) {
+    displayWord(response);
+    word = response[0].toString().toLowerCase();
+    console.log("this is the word " + word);
+    wordArray = word.split("");
+    console.log(wordArray);
+    return word;
+  });
 };
 
+// User.prototype.putLetter = function() {
+//
+// }
+User.prototype.checkLetter = function(letter) {
 
-User.prototype.displayLines = function (word, displayFunction) {
+  console.log("word: " + word);
+  for (var i = 0; i < wordArray.length; i++) {
+    console.log("line 25: " + i);
+    if (wordArray.indexOf(letter) != -1) {
+      this.correctList.push(letter);
+      var result = wordArray.indexOf(letter);
+      console.log(result);
+      return result;
+  } else {
+    this.wrongList.push(letter);
+  }
+}
+};
+
+User.prototype.displayLines = function (displayFunction) {
+  console.log("@display lines: " + word);
   for (var i = 0; i < word.length; i++) {
     displayFunction(i);
   }
 };
-
 
 exports.userModule = User;
 
 },{}],2:[function(require,module,exports){
 var User = require('./../js/dino.js').userModule;
 
-var displayWord = function(thisWord) {
-  $(".word").text(thisWord);
+var displayWord = function(response) {
+  $(".word").text(response[0]);
 };
 
 var makeLines = function(i) {
   $(".lines").append("<div class='line' data-val='" + i + "'></div>");
-}
+};
 
 // var displayLetter = function(letter, i) {
 //   $("data-val='" + i + "'").append(letter);
 // };
 
-var word;
 $(document).ready(function() {
 
   var currentUser = new User();
+  var word = currentUser.getWord(displayWord);
+  setTimeout(function() {
+
+
+  console.log("word on front end: " + word);
+  currentUser.displayLines(makeLines);
+}
+  , 1000)
+
   $(".button").click(function(){
     var letter = $("#user-input").val();
     console.log(letter);
-    currentUser.checkLetter(letter, word);
+    var letterLocation = currentUser.checkLetter(letter);
+    console.log(letterLocation);
     for (var i = 0; i < currentUser.correctList.length; i++) {
-      $('div.line[data-val=' + i + ']').text(currentUser.correctList[i]);
+      $('div.line[data-val=' + letterLocation + ']').text(currentUser.correctList[letterLocation]);
     }
 
     // currentUser.correctList.forEach(function(correctLetter){
     //   $(".correctList").text(correctLetter);
     // });
-  });
-
-  $.get('http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=1&words=1').then(function(response) {
-    displayWord(response);
-    word = response[0].toString();
-    console.log(word);
-    currentUser.displayLines(word, makeLines);
   });
 
 });
