@@ -1,18 +1,9 @@
-.word {
-  border: 5px solid red;
-  height: 300px;
-  width: 300px;
-}
-
 .line {
-  height: 10px;
-  width: 40px;
-  border: 10px solid red;
-}
+  border-bottom: 2px solid black;
+  margin: 5px;
+  width: 130px;
+  float: left;
+  margin-bottom: 60px;
+  margin-top: 60px; }
 
-.lines {
-  height: 300px;
-  width: 100%;
-  border: 10px solid blue;
-  float: right;
-}
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3R5bGVzLmNzcyIsInNvdXJjZXMiOlsic3R5bGVzLnNjc3MiXSwic291cmNlc0NvbnRlbnQiOlsiLmxpbmUge1xuICBib3JkZXItYm90dG9tOiAycHggc29saWQgYmxhY2s7XG4gIG1hcmdpbjogNXB4O1xuICB3aWR0aDogMTMwcHg7XG4gIGZsb2F0OiBsZWZ0O1xuICBtYXJnaW4tYm90dG9tOiA2MHB4O1xuICBtYXJnaW4tdG9wOiA2MHB4XG5cbn1cbiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxBQUFBLEtBQUssQ0FBQztFQUNKLGFBQWEsRUFBRSxlQUFlO0VBQzlCLE1BQU0sRUFBRSxHQUFHO0VBQ1gsS0FBSyxFQUFFLEtBQUs7RUFDWixLQUFLLEVBQUUsSUFBSTtFQUNYLGFBQWEsRUFBRSxJQUFJO0VBQ25CLFVBQVUsRUFBRSxJQUVkLEdBQUUifQ== */
