@@ -30,7 +30,7 @@ $(document).ready(function() {
     var letterLocation = currentUser.checkLetter(letter);
     console.log(letterLocation);
     for (var i = 0; i < currentUser.correctList.length; i++) {
-      $('div.line[data-val=' + letterLocation + ']').text(currentUser.correctList[letterLocation]);
+      $('div.line[data-val=' + letterLocation + ']').text(currentUser.correctList[i]);
     }
 
     // currentUser.correctList.forEach(function(correctLetter){

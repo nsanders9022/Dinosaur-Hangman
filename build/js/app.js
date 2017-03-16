@@ -25,9 +25,9 @@ User.prototype.checkLetter = function(letter) {
   console.log("word: " + word);
   for (var i = 0; i < wordArray.length; i++) {
     console.log("line 25: " + i);
-    if (wordArray.indexOf(letter) != -1) {
+    if (letter === wordArray[i]) {
       this.correctList.push(letter);
-      var result = wordArray.indexOf(letter);
+      var result = i;
       console.log(result);
       return result;
   } else {
@@ -78,7 +78,7 @@ $(document).ready(function() {
     var letterLocation = currentUser.checkLetter(letter);
     console.log(letterLocation);
     for (var i = 0; i < currentUser.correctList.length; i++) {
-      $('div.line[data-val=' + letterLocation + ']').text(currentUser.correctList[letterLocation]);
+      $('div.line[data-val=' + letterLocation + ']').text(currentUser.correctList[i]);
     }
 
     // currentUser.correctList.forEach(function(correctLetter){

@@ -24,9 +24,9 @@ User.prototype.checkLetter = function(letter) {
   console.log("word: " + word);
   for (var i = 0; i < wordArray.length; i++) {
     console.log("line 25: " + i);
-    if (wordArray.indexOf(letter) != -1) {
+    if (letter === wordArray[i]) {
       this.correctList.push(letter);
-      var result = wordArray.indexOf(letter);
+      var result = i;
       console.log(result);
       return result;
   } else {
