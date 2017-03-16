@@ -19,20 +19,18 @@ User.prototype.getWord = function(displayWord) {
 // User.prototype.putLetter = function() {
 //
 // }
-User.prototype.checkLetter = function(letter) {
+User.prototype.checkLetter = function(letter, showLetters) {
 
   console.log("word: " + word);
   for (var i = 0; i < wordArray.length; i++) {
     console.log("line 25: " + i);
     if (letter === wordArray[i]) {
       this.correctList.push(letter);
-      var result = i;
-      console.log(result);
-      return result;
-  } else {
+      showLetters(i, letter)
+    } else {
     this.wrongList.push(letter);
-  }
-}
+    }
+  } 
 };
 
 User.prototype.displayLines = function (displayFunction) {
