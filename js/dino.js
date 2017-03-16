@@ -16,9 +16,6 @@ User.prototype.getWord = function(displayWord) {
   });
 };
 
-// User.prototype.putLetter = function() {
-//
-// }
 User.prototype.checkLetter = function(letter, showLetters) {
 
   console.log("word: " + word);
@@ -30,7 +27,7 @@ User.prototype.checkLetter = function(letter, showLetters) {
     } else {
     this.wrongList.push(letter);
     }
-  } 
+  }
 };
 
 User.prototype.displayLines = function (displayFunction) {
